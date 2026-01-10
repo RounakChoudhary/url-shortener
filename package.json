@@ -1,0 +1,23 @@
+{
+  "name": "url-shortener",
+  "version": "1.0.0",
+  "description": "learning project",
+  "main": "index.js",
+  "scripts": {
+    "test": "start"
+  },
+  "keywords": [
+    "url-shortener",
+    "nodejs",
+    "express"
+  ],
+  "author": "Rounak Choudhary",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "nanoid": "^5.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
