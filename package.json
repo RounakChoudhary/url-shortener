@@ -4,7 +4,7 @@
   "description": "learning project",
   "main": "index.js",
   "scripts": {
-    "test": "start"
+   "start": "nodemon src/index.js"
   },
   "keywords": [
     "url-shortener",
@@ -13,7 +13,7 @@
   ],
   "author": "Rounak Choudhary",
   "license": "ISC",
-  "dependencies": {
+  "dependencies ": {
     "express": "^5.2.1",
     "nanoid": "^5.1.6"
   },
