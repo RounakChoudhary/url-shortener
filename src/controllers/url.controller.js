@@ -13,16 +13,41 @@ exports.createShortUrl = async (req, res) => {
       return res.status(400).json({error:"URL required"})
     }
 
-    // check if already exists
-    const existing = await Url.findOne({ originalUrl: url })
+exports.createShortUrl = async (req, res) => {
 
-    if(existing){
-      return res.json({
-        shortUrl: `${BASE_URL}/${existing.shortCode}`
-      })
+  try {
+
+    const { url } = req.body
+
+    if (!url) {
+      return res.status(400).json({ error: "URL is required" })
     }
 
     const shortCode = nanoid(6)
+
+    const newUrl = await Url.create({
+      shortCode,
+      originalUrl: url
+    })
+
+    res.status(201).json({
+      shortUrl: `${BASE_URL}/${shortCode}`
+    })
+
+  } catch (error) {
+    res.status(500).json({ error: "Server error" })
+  }
+
+}
+
+
+    let shortCode
+    let exists = true
+
+    while (exists) {
+      shortCode = nanoid(6)
+      exists = await Url.findOne({ shortCode })
+    }
 
     const newUrl = await Url.create({
       shortCode,
