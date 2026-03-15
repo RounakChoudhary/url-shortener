@@ -4,7 +4,7 @@ const router = express.Router()
 const {
   createShortUrl,
   redirectUrl,
-  getAnalytics
+  getAnalytics,
 } = require("../controllers/url.controller")
 
 router.post("/shorten", createShortUrl)

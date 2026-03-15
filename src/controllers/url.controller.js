@@ -1,6 +1,6 @@
 const Url = require("../models/url.model")
 const { nanoid } = require("nanoid")
-const isValidUrl = require("./utils/validateUrl")
+const isValidUrl = require("../utils/validateUrl")
 
 const BASE_URL = process.env.BASE_URL || "http://localhost:5000"
 
@@ -98,4 +98,22 @@ exports.redirectUrl = async (req, res) => {
 
   }
 
+}
+
+exports.getAnalytics = async (req, res) => {
+  try {
+    const { code } = req.params
+    const url = await Url.findOne({ shortCode: code })
+    if (!url) return res.status(404).json({ error: "URL not found" })
+
+    res.json({
+      shortCode: url.shortCode,
+      originalUrl: url.originalUrl,
+      clicks: url.clicks,
+      createdAt: url.createdAt,
+      expiresAt: url.expiresAt
+    })
+  } catch (error) {
+    res.status(500).json({ error: "Server error" })
+  }
 }
