@@ -55,9 +55,15 @@ exports.createShortUrl = async (req, res) => {
       expiresAt
     })
 
-    res.status(201).json({
-      shortUrl: `${BASE_URL}/${shortCode}`
-    })
+   const QRCode = require("qrcode")
+
+
+   const qrCode = await QRCode.toDataURL(`${BASE_URL}/${shortCode}`)
+
+     res.status(201).json({
+       shortUrl: `${BASE_URL}/${shortCode}`,
+       qrCode  // base64 PNG the frontend can render as <img src="...">
+     })
 
   } catch (error) {
 
