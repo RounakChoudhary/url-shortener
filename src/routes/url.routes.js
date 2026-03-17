@@ -7,7 +7,8 @@ const {
   getAnalytics,
 } = require("../controllers/url.controller")
 
-router.post("/shorten", createShortUrl)
+const limiter = require("../middlewares/rateLimiter")
+router.post("/shorten", limiter, createShortUrl)
 
 router.get("/analytics/:code", getAnalytics)
 
