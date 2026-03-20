@@ -1,3 +1,4 @@
+const QRCode = require("qrcode")
 const Url = require("../models/url.model")
 const { nanoid } = require("nanoid")
 const isValidUrl = require("../utils/validateUrl")
@@ -54,9 +55,6 @@ exports.createShortUrl = async (req, res) => {
       originalUrl: url,
       expiresAt
     })
-
-   const QRCode = require("qrcode")
-
 
    const qrCode = await QRCode.toDataURL(`${BASE_URL}/${shortCode}`)
 
